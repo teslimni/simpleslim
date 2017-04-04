@@ -1,0 +1,12 @@
+{
+    "name": "teslim/simpleslim",
+    "authors": [
+        {
+            "name": "Teslim Adeyemo",
+            "email": "teslimni@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.8"
+    }
+}
