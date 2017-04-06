@@ -24,23 +24,27 @@ $container['view'] = function ($container) {
 
 $app->get('/', function($request, $response) {
 	return $this->view->render($response, 'home.twig');
-});
+})->setName('home');
 
 $app->get('/users', function($request, $response) {
 
-	$user = [
-		'name' => 'Amina',
-		'email' => 'minatesssy@temina.com'
-
+	$users = [
+		['username' => 'Teslim'],
+		['username' => 'Amina'],
+		['username' => 'Mazid'],
+		['username' => 'Abbas'],
+		['username' => 'Halimah'],
+		['username' => 'Ziyad'],
+		['username' => 'Aisha'],
 	];
 
 	return $this->view->render($response, 'users.twig', [
 
-		'user' => $user,
+		'users' => $users,
 
 	]);
 
 
-});
+})->setName('users.index');
 
 $app->run();

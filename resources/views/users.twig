@@ -1,9 +1,16 @@
 {% extends 'layout/app.twig' %}
 
-{% block title %}About {{ user.name }}{% endblock%}
+{% block title %}About Two Families{% endblock%}
 
 {% block content %}
 	
-	This is {{ user.name }}, with email {{ user.email }}.
+	The family members are: 
+	<ul>
+		{% for user in users %}
+
+			<li>{{ user.username }}</li>
+
+		{% endfor %}
+	</ul>
 
 {% endblock %}
