@@ -37,14 +37,9 @@ $app->get('/users', function($request, $response) {
 		['username' => 'Ziyad'],
 		['username' => 'Aisha'],
 	];
-
 	return $this->view->render($response, 'users.twig', [
-
 		'users' => $users,
-
 	]);
-
-
 })->setName('users.index');
 
 $app->run();
