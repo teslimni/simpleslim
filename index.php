@@ -10,6 +10,10 @@ $app = new \Slim\App([
 
 $container = $app->getContainer();
 
+$container[db] = function () {
+	return new PDO( 'mysql:host=localhost;dbname=simpleslim', 'homestead', 'secret' );
+};
+
 $container['view'] = function ($container) {
 	$view = new \Slim\Views\Twig(__DIR__ . '/resources/views', [
 		'cache' => false
@@ -22,29 +26,8 @@ $container['view'] = function ($container) {
 	return $view;
 };
 
-$app->get('/', function($request, $response) {
-	return $this->view->render($response, 'home.twig');
+$app->get('/', function() {
+	$users = $this->db->query('SELECT * FROM users')->fetchAll(PDO::FETCH_OBJ);
 })->setName('home');
-
-$app->get('/users', function($request, $response) {
-
-	$users = [
-		['username' => 'Teslim'],
-		['username' => 'Amina'],
-		['username' => 'Mazid'],
-		['username' => 'Abbas'],
-		['username' => 'Halimah'],
-		['username' => 'Ziyad'],
-		['username' => 'Aisha'],
-	];
-
-	return $this->view->render($response, 'users.twig', [
-
-		'users' => $users,
-
-	]);
-
-
-})->setName('users.index');
 
 $app->run();
