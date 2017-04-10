@@ -41,10 +41,25 @@ $app->get('/users', function($request, $response) {
 	return $this->view->render($response, 'users.twig', [
 
 		'users' => $users,
-
 	]);
 
-
 })->setName('users.index');
+
+$app->get('/contact', function($request, $response) {
+	return $this->view->render($response, 'contact.twig');
+});
+
+
+$app->get('/contact/confirm', function($request, $response) {
+	return $this->view->render($response, 'contact_confirm.twig');
+});
+
+
+$app->post('/contact', function($request, $response) {
+	//contact us
+	
+
+	return $response->withRedirect('http://simpleslim.app/contact/confirm');
+})->setName('contact');
 
 $app->run();
