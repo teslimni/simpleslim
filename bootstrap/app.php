@@ -1,7 +1,6 @@
 <?php 
 
-require 'vendor/autoload.php';
-
+require __DIR__ . '/../vendor/autoload.php';
 $app = new \Slim\App([
 	'settings' => [
 		'displayErrorDetails' => true,
@@ -38,4 +37,5 @@ $app->get('/users/{username}', function($request, $response, $args) {
 	$user = $user->fetch(PDO::FETCH_OBJ);
 	return $this->view->render($response, 'users/profile.twig', compact('user'));
 });
-$app->run();
+
+require __DIR__ . '/../routes/web.php';
