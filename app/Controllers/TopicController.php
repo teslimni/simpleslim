@@ -1,13 +1,24 @@
 <?php 
 namespace App\Controllers;
+use PDO;
 
-class TopicController
+class TopicController extends Controller
 {
-	Public function index(){
-		return "All Topics";
+	
+	Public function index($request, $response) 
+	{
+		$topics = $this->c->db->query("SELECT * FROM topics")->fetchAll(PDO::FETCH_OBJ);
+		return $this->c->view->render($response, 'topics/index.twig', compact('topics'));
 	}
 
-	Public function show(){
-		return 'Show single topic';
+	Public function show($request, $response, $args)
+	{
+		$topic = $this->c->db->prepare("SELECT * FROM topics WHERE id = :id");
+		$topic->execute([
+			'id' => $args['id']
+		]);
+		$topic = $topic->fetch(PDO::FETCH_OBJ);
+
+		return $this->c->view->render($response, 'topics/show.twig', compact('topic'));	
 	}
 }
