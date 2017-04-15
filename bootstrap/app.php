@@ -9,7 +9,6 @@ $app = new \Slim\App([
 
 $container = $app->getContainer();
 
-
 $container['db'] = function () {
 	return new PDO( 'mysql:host=localhost;dbname=simpleslim', 'homestead', 'secret' );
 };
