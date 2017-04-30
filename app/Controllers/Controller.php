@@ -11,4 +11,7 @@ class Controller
 	{
 		$this->c = $c;
 	}
+	Protected function render404($response){
+		return $this->c->view->render($response->withStatus(404), 'errors/404.twig');
+	}
 }
