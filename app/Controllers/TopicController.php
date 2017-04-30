@@ -7,7 +7,7 @@ class TopicController
 		return "All Topics";
 	}
 
-	Public function show(){
-		return 'Show single topic';
+	Public function show($request, $response, $args){
+		return $args['id'];
 	}
 }
